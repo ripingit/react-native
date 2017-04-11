@@ -16,7 +16,7 @@ const Module = require('./Module');
 const Package = require('./Package');
 const Polyfill = require('./Polyfill');
 
-import type GlobalTransformCache from '../lib/GlobalTransformCache';
+import type {GlobalTransformCache} from '../lib/GlobalTransformCache';
 import type {GetTransformCacheKey} from '../lib/TransformCache';
 import type {Reporter} from '../lib/reporting';
 import type Cache from './Cache';
@@ -78,7 +78,7 @@ class ModuleCache {
     this._reporter = reporter;
   }
 
-  getModule(filePath: string) {
+  getModule(filePath: string): Module {
     if (!this._moduleCache[filePath]) {
       this._moduleCache[filePath] = new Module({
         cache: this._cache,
@@ -114,7 +114,7 @@ class ModuleCache {
     return this._moduleCache[filePath];
   }
 
-  getPackage(filePath: string) {
+  getPackage(filePath: string): Package {
     if (!this._packageCache[filePath]) {
       this._packageCache[filePath] = new Package({
         file: filePath,

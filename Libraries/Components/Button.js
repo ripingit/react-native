@@ -111,16 +111,20 @@ class Button extends React.Component {
       'The title prop of a Button must be a string',
     );
     const formattedTitle = Platform.OS === 'android' ? title.toUpperCase() : title;
+    const accessibilityTraits = ['button'];
+    if (disabled) {
+      accessibilityTraits.push('disabled');
+    }
     return (
       <Touchable
         accessibilityComponentType="button"
         accessibilityLabel={accessibilityLabel}
-        accessibilityTraits={['button']}
+        accessibilityTraits={accessibilityTraits}
         testID={testID}
         disabled={disabled}
         onPress={onPress}>
         <View style={buttonStyles}>
-          <Text style={textStyles}>{formattedTitle}</Text>
+          <Text style={textStyles} disabled={disabled}>{formattedTitle}</Text>
         </View>
       </Touchable>
     );
